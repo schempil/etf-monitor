@@ -34,7 +34,7 @@ export class NewEtf extends React.Component<any, State> {
 	}
 
 	submit() {
-		console.log('### this.state', this.state)
+		//TODO
 	}
 
 	render() {
@@ -45,7 +45,7 @@ export class NewEtf extends React.Component<any, State> {
 						<input type="text" className="form-control" placeholder="Name" value={this.state.name} onChange={this.onNameChange} />
 					</div>
 					<div className="col">
-						<input type="number" className="form-control" placeholder="Name" value={this.state.performance} onChange={this.onPerformanceChange} />
+						<input type="number" className="form-control" placeholder="Performance" value={this.state.performance} onChange={this.onPerformanceChange} />
 					</div>
 					<button className="btn btn-primary" onClick={this.submit}>+</button>
 				</div>
