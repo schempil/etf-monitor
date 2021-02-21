@@ -1,3 +1,7 @@
 .etf-card {
     margin-bottom: 30px;
 }
+
+.selected {
+    border: 2px solid yellow;
+}

@@ -34,3 +34,14 @@ test('add new etf', async() => {
 
 	expect(etfList.length + 1).toEqual(screen.getAllByTestId('tid-etf-card').length)
 })
+
+test('select etf out of list', async() => {
+
+	render(<EtfList />)
+
+	const etfCards = await screen.findAllByTestId('tid-etf-card')
+
+	fireEvent.click(etfCards[0])
+
+	expect(etfCards[0]).toHaveClass('selected')
+})

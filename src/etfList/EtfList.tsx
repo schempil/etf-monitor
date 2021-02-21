@@ -7,6 +7,7 @@ import {NewEtf} from "../newEtf/NewEtf";
 
 type State = {
 	etfList: Etf[]
+	activeEtf: Etf | null
 }
 
 export class EtfList extends React.Component<any, State> {
@@ -15,9 +16,11 @@ export class EtfList extends React.Component<any, State> {
 		super(props);
 
 		this.addEtf = this.addEtf.bind(this)
+		this.setActive = this.setActive.bind(this)
 
 		this.state = {
-			etfList: []
+			etfList: [],
+			activeEtf: null
 		}
 	}
 
@@ -32,11 +35,15 @@ export class EtfList extends React.Component<any, State> {
 		this.setState({ etfList: this.state.etfList } )
 	}
 
+	setActive(etf: Etf) {
+		this.setState({ activeEtf: etf } )
+	}
+
 	render() {
 
 		const listItems = this.state.etfList.map((etf, index) => {
 			return (
-				<EtfCard etf={etf} key={etf.name} />
+				<EtfCard etf={etf} key={etf.name} activeEtf={this.state.activeEtf} setActive={this.setActive} />
 			)
 		})
 
