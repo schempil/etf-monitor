@@ -1,5 +1,6 @@
 import React from "react";
 import {Etf} from "../types/Etf";
+import './EtfCard.css';
 
 type Props = {
 	etf: Etf
@@ -24,7 +25,7 @@ export class EtfCard extends React.Component<Props, any> {
 		const { etf } = this.props
 
 		return (
-			<div className="col">
+			<div className="col etf-card" data-testid="tid-etf-card">
 				<div className="card">
 					<div className={"card-body " + this.getColorClass(etf.performance)}>
 						<h5 className="card-title">{etf.name}</h5>

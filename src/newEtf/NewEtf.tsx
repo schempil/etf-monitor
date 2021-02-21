@@ -1,12 +1,17 @@
 import React from "react";
 import './NewEtf.css';
+import {Etf} from "../types/Etf";
+
+type Props = {
+	addEtf: (etf: Etf) => void
+}
 
 type State = {
 	name: string
 	performance: number
 }
 
-export class NewEtf extends React.Component<any, State> {
+export class NewEtf extends React.Component<Props, State> {
 
 	constructor(props: any) {
 		super(props);
@@ -33,8 +38,20 @@ export class NewEtf extends React.Component<any, State> {
 		})
 	}
 
+	initializeNewEtf() {
+		this.setState({
+			name: '',
+			performance: 0
+		})
+	}
+
 	submit() {
-		//TODO
+		this.props.addEtf({
+			name: this.state.name,
+			performance: this.state.performance
+		})
+
+		this.initializeNewEtf()
 	}
 
 	render() {

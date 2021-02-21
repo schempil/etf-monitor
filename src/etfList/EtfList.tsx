@@ -14,6 +14,8 @@ export class EtfList extends React.Component<any, State> {
 	constructor(props: any) {
 		super(props);
 
+		this.addEtf = this.addEtf.bind(this)
+
 		this.state = {
 			etfList: []
 		}
@@ -23,6 +25,11 @@ export class EtfList extends React.Component<any, State> {
 		this.setState({
 			etfList: await MockService.getEtfList()
 		})
+	}
+
+	addEtf(etf: Etf) {
+		this.state.etfList.push(etf)
+		this.setState({ etfList: this.state.etfList } )
 	}
 
 	render() {
@@ -35,7 +42,7 @@ export class EtfList extends React.Component<any, State> {
 
 		return (
 			<div className="container etf-list">
-				<NewEtf />
+				<NewEtf addEtf={this.addEtf} />
 				<div className="row row-cols-1 row-cols-md-3 g-4">
 					{listItems}
 				</div>
