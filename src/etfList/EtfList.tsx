@@ -17,12 +17,7 @@ export function EtfList() {
 	}, [])
 
 	const addEtf = (etf: Etf) => {
-
-		//TODO Needs to clarify in here, very bad solution here...
-
-		const newList = JSON.parse(JSON.stringify(etfList))
-		newList.push(etf)
-		setEtfList(newList)
+		setEtfList([...etfList, etf])
 	}
 
 	const setActive = (etf: Etf) => {

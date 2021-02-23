@@ -43,5 +43,5 @@ test('select etf out of list', async() => {
 
 	fireEvent.click(etfCards[0])
 
-	expect(etfCards[0]).toHaveClass('selected')
+	expect(etfCards[0]).toHaveClass('Selected-0-2-16')
 })
