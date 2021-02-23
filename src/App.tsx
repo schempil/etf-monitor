@@ -2,6 +2,9 @@ import React from 'react';
 import {HeaderBar} from "./headerBar/HeaderBar";
 import {EtfList} from "./etfList/EtfList";
 import {createUseStyles} from "react-jss";
+import { ReactQueryDevtools } from 'react-query/devtools'
+import {QueryClient, QueryClientProvider} from "react-query";
+
 
 function App() {
 
@@ -13,14 +16,21 @@ function App() {
 	})
 
 	const styles = useStyles()
+	const queryClient = new QueryClient()
 
   return (
-    <div className="App" data-testid="App Container">
-      <header className={styles.AppHeader}>
+
+		<QueryClientProvider client={queryClient}>
+			<div className="App" data-testid="App Container">
+				<header className={styles.AppHeader}>
 					<HeaderBar />
 					<EtfList />
-      </header>
-    </div>
+				</header>
+			</div>
+			<ReactQueryDevtools initialIsOpen={false} />
+		</QueryClientProvider>
+
+
   );
 }
 
