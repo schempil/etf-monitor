@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import './NewEtf.css';
 import {Etf} from "../types/Etf";
 
@@ -6,68 +6,45 @@ type Props = {
 	addEtf: (etf: Etf) => void
 }
 
-type State = {
-	name: string
-	performance: number
-}
+export function NewEtf (props: Props) {
 
-export class NewEtf extends React.Component<Props, State> {
+	const [name, setName] = useState<string>('')
+	const [performance, setPerformance] = useState<number>(0)
 
-	constructor(props: any) {
-		super(props);
-
-		this.onNameChange= this.onNameChange.bind(this)
-		this.onPerformanceChange= this.onPerformanceChange.bind(this)
-		this.submit= this.submit.bind(this)
-
-		this.state = {
-			name: '',
-			performance: 0
-		}
+	const onNameChange = (e: any) => {
+		setName(e.target.value)
 	}
 
-	onNameChange(e: any) {
-		this.setState({
-			name: e.target.value
-		})
+	const onPerformanceChange = (e: any) => {
+		setPerformance(parseInt(e.target.value))
 	}
 
-	onPerformanceChange(e: any) {
-		this.setState({
-			performance: parseInt(e.target.value)
-		})
+	const initializeState = () => {
+		setName('')
+		setPerformance(0)
 	}
 
-	initializeNewEtf() {
-		this.setState({
-			name: '',
-			performance: 0
-		})
-	}
-
-	submit() {
-		this.props.addEtf({
-			name: this.state.name,
-			performance: this.state.performance
+	const submit = () => {
+		props.addEtf({
+			name: name,
+			performance: performance
 		})
 
-		this.initializeNewEtf()
+		initializeState()
 	}
 
-	render() {
-		return (
-			<div>
-				<div className="row new-etf-form">
-					<div className="col">
-						<input type="text" className="form-control" placeholder="Name" value={this.state.name} onChange={this.onNameChange} />
-					</div>
-					<div className="col">
-						<input type="number" className="form-control" placeholder="Performance" value={this.state.performance} onChange={this.onPerformanceChange} />
-					</div>
-					<button className="btn btn-primary" onClick={this.submit}>+</button>
+	return (
+		<div>
+			<div className="row new-etf-form">
+				<div className="col">
+					<input type="text" className="form-control" placeholder="Name" value={name} onChange={onNameChange} />
 				</div>
+				<div className="col">
+					<input type="number" className="form-control" placeholder="Performance" value={performance} onChange={onPerformanceChange} />
+				</div>
+				<button className="btn btn-primary" onClick={submit}>+</button>
 			</div>
-		)
-	}
+		</div>
+	)
 
 }
