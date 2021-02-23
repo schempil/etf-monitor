@@ -1,5 +1,5 @@
 import {Etf} from "../types/Etf";
-import './EtfCard.css';
+import {createUseStyles} from "react-jss";
 
 type Props = {
 	etf: Etf
@@ -8,6 +8,18 @@ type Props = {
 }
 
 export function EtfCard(props: Props) {
+
+	const useStyles = createUseStyles({
+		EtfCard: {
+			marginBottom: '30px'
+		},
+		Selected: {
+			border: '2px solid yellow'
+		}
+	})
+
+	const styles = useStyles()
+
 	const getSign = (performance: number) => {
 		return performance < 0 ? '' : '+'
 	}
@@ -27,7 +39,7 @@ export function EtfCard(props: Props) {
 	const { etf } = props
 
 		return (
-			<div className={'col etf-card' + (isActive(etf) ? ' selected' : '')}
+			<div className={'col ' + styles.EtfCard + (isActive(etf) ? ` ${styles.Selected}` : '')}
 					 data-testid="tid-etf-card"
 					 onClick={() => props.setActive(etf)}>
 				<div className="card">
