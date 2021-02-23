@@ -1,12 +1,21 @@
 import React, {useState} from "react";
-import './NewEtf.css';
 import {Etf} from "../types/Etf";
+import {createUseStyles} from "react-jss";
 
 type Props = {
 	addEtf: (etf: Etf) => void
 }
 
+const useStyles = createUseStyles({
+	NewEtfForm: {
+		marginTop: '30px',
+		marginBottom: '30px'
+	}
+})
+
 export function NewEtf (props: Props) {
+
+	const styles = useStyles()
 
 	const [name, setName] = useState<string>('')
 	const [performance, setPerformance] = useState<number>(0)
@@ -35,7 +44,7 @@ export function NewEtf (props: Props) {
 
 	return (
 		<div>
-			<div className="row new-etf-form">
+			<div className={'row ' + styles.NewEtfForm}>
 				<div className="col">
 					<input type="text" className="form-control" placeholder="Name" value={name} onChange={onNameChange} />
 				</div>
