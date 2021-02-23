@@ -3,7 +3,6 @@ import {HeaderBar} from "./headerBar/HeaderBar";
 import {EtfList} from "./etfList/EtfList";
 import {createUseStyles} from "react-jss";
 
-
 function App() {
 
 	const useStyles = createUseStyles({
@@ -13,11 +12,11 @@ function App() {
 		}
 	})
 
-	const classes = useStyles()
+	const styles = useStyles()
 
   return (
     <div className="App" data-testid="App Container">
-      <header className={classes.AppHeader}>
+      <header className={styles.AppHeader}>
 					<HeaderBar />
 					<EtfList />
       </header>
