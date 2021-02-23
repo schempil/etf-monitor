@@ -1,4 +1,3 @@
-import React from "react";
 import {Etf} from "../types/Etf";
 import './EtfCard.css';
 
@@ -8,39 +7,35 @@ type Props = {
 	setActive: (etf: Etf) => void
 }
 
-export class EtfCard extends React.Component<Props, any> {
-
-	getSign(performance: number) {
+export function EtfCard(props: Props) {
+	const getSign = (performance: number) => {
 		return performance < 0 ? '' : '+'
 	}
 
-	formatPerformance(etf: Etf): string {
-		return `${this.getSign(etf.performance)}${etf.performance}%`
+	const formatPerformance = (etf: Etf): string => {
+		return `${getSign(etf.performance)}${etf.performance}%`
 	}
 
-	getColorClass(performance: number): string {
+	const getColorClass = (performance: number): string => {
 		return performance < 0 ? 'text-danger' : 'text-success'
 	}
 
-	isActive(etf: Etf): boolean {
-		return !!this.props.activeEtf && this.props.activeEtf.name === etf.name
+	const isActive = (etf: Etf): boolean => {
+		return !!props.activeEtf && props.activeEtf.name === etf.name
 	}
 
-	render() {
-
-		const { etf } = this.props
+	const { etf } = props
 
 		return (
-			<div className={'col etf-card' + (this.isActive(etf) ? ' selected' : '')}
+			<div className={'col etf-card' + (isActive(etf) ? ' selected' : '')}
 					 data-testid="tid-etf-card"
-					 onClick={() => this.props.setActive(etf)}>
+					 onClick={() => props.setActive(etf)}>
 				<div className="card">
-					<div className={"card-body " + this.getColorClass(etf.performance)}>
+					<div className={"card-body " + getColorClass(etf.performance)}>
 						<h5 className="card-title">{etf.name}</h5>
-						<p className="card-text">Performance: {this.formatPerformance(etf)}</p>
+						<p className="card-text">Performance: {formatPerformance(etf)}</p>
 					</div>
 				</div>
 			</div>
 		)
-	}
 }
