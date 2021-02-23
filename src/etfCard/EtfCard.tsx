@@ -7,16 +7,16 @@ type Props = {
 	setActive: (etf: Etf) => void
 }
 
-export function EtfCard(props: Props) {
+const useStyles = createUseStyles({
+	EtfCard: {
+		marginBottom: '30px'
+	},
+	Selected: {
+		border: '2px solid yellow'
+	}
+})
 
-	const useStyles = createUseStyles({
-		EtfCard: {
-			marginBottom: '30px'
-		},
-		Selected: {
-			border: '2px solid yellow'
-		}
-	})
+export function EtfCard(props: Props) {
 
 	const styles = useStyles()
 

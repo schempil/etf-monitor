@@ -1,19 +1,30 @@
 import {Etf} from "../types/Etf";
-import './EtfList.css';
 import {useEffect, useState} from "react";
 import {EtfCard} from "../etfCard/EtfCard";
 import {NewEtf} from "../newEtf/NewEtf";
 import {MockService} from "../services/MockService";
+import {createUseStyles} from "react-jss";
+
+const useStyles = createUseStyles({
+	EtfList: {
+		marginTop: '30px'
+	}
+})
 
 export function EtfList() {
+
+	const styles = useStyles()
 
 	const [etfList, setEtfList] = useState<Etf[]>([])
 	const [activeEtf, setActiveEtf] = useState<Etf | null>(null)
 
+	const loadEtfs = async () => {
+		const etfList = await MockService.getEtfList()
+		setEtfList(etfList)
+	}
+
 	useEffect(() => {
-		MockService.getEtfList().then(etfList => {
-			setEtfList(etfList)
-		})
+		loadEtfs()
 	}, [])
 
 	const addEtf = (etf: Etf) => {
@@ -31,12 +42,11 @@ export function EtfList() {
 	})
 
 	return (
-		<div className="container etf-list">
+		<div className={'container ' + styles.EtfList}>
 			<NewEtf addEtf={addEtf} />
 			<div className="row row-cols-1 row-cols-md-3 g-4">
 				{listItems}
 			</div>
 		</div>
 	)
-
 }
