@@ -22,7 +22,7 @@ export function Example() {
 
 	return (
 		<div>
-			{ items.map(item => <h1 onClick={() => updateItem(item)}>{item}</h1>) }
+			{ items.map(item => <h1 key={item} onClick={() => updateItem(item)}>{item}</h1>) }
 		</div>
 	)
 }
