@@ -4,8 +4,6 @@ import {EtfList} from "./etfList/EtfList";
 import {createUseStyles} from "react-jss";
 import {ReactQueryDevtools} from 'react-query/devtools'
 import {QueryClient, QueryClientProvider} from "react-query";
-import {TodoList} from "./todoList/TodoList";
-
 
 function App() {
 
@@ -26,7 +24,6 @@ function App() {
 				<header className={styles.AppHeader}>
 					<HeaderBar />
 					<EtfList />
-					<TodoList />
 				</header>
 			</div>
 			<ReactQueryDevtools initialIsOpen={false} />

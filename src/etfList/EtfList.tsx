@@ -4,6 +4,7 @@ import {EtfCard} from "../etfCard/EtfCard";
 import {NewEtf} from "../newEtf/NewEtf";
 import {MockService} from "../services/MockService";
 import {createUseStyles} from "react-jss";
+import {Example} from "./example";
 
 const useStyles = createUseStyles({
 	EtfList: {
@@ -47,6 +48,7 @@ export function EtfList() {
 			<div className="row row-cols-1 row-cols-md-3 g-4">
 				{listItems}
 			</div>
+			<Example />
 		</div>
 	)
 }
